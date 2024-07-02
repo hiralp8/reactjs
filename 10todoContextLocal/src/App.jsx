@@ -13,9 +13,7 @@ function App() {
 
   const updateTodo = (id, todo) => {
     setTodos((prev) =>
-      prev.map((prevTodo) => {
-        prevTodo.id === id ? todo : prevTodo;
-      })
+      prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
     );
   };
 
@@ -24,6 +22,7 @@ function App() {
   };
 
   const toggleComplete = (id) => {
+    //console.log(id);
     setTodos((prev) =>
       prev.map((prevTodo) =>
         prevTodo.id === id
@@ -35,6 +34,7 @@ function App() {
 
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("todos"));
+
     if (todos && todos.length > 0) {
       setTodos(todos);
     }
@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, []);
+  }, [todos]);
 
   return (
     <TodoProvider
